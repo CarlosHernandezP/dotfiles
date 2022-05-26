@@ -1,0 +1,41 @@
+alias fd="fdfind"
+alias bat="batcat"
+
+# Neovim
+alias v="nvim"
+alias vi="nvim"
+alias vim="nvim"
+
+# Xclip aliases
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
+# Git aliases
+alias wow="git status"
+alias gitadog='git log --all --decorate --oneline --graph'
+
+# base16 aliases
+alias day='base16_google-light'
+alias night='base16_3024'
+alias bright='base16_bright'
+alias normal='base16_solarized-dark'
+alias normal2='base16_railcasts'
+
+# York vpn and YARCC aliases
+alias yorkvpn="/usr/local/pulse/pulsesvc -h webvpn.york.ac.uk -u dh1135 -r york_users_realm"
+# INFO about openconnect https://footprints.york.ac.uk/MRcgi/MRTicketPage.pl?MR=407983&PROJECTID=1
+# When prompted for "password#2", use "push"
+alias openconnectyorkvpn="openconnect --protocol=nc webvpn.york.ac.uk/split --user=dh1135"
+
+# system utilities
+alias se='sensors'
+
+# To access dotfiles. Brings all files in ~/dotfiles into fzf, and opens selelection in neovim
+alias ds='f=$(fd --type f  . ~/dotfiles | fzf --preview="bat {} --theme="base16" --color=always --style=\"numbers\"") && nvim $f'
+
+# Ease of config
+alias zshsrc='source ~/.zshrc'
+alias i3conf='nvim ~/.config/i3/config' 
+# TODO: alias to run brightness script at startup, run this
+# if Fn+F11/12 does not change screen brightness
+alias binc='~/.config/i3/brightness.sh --inc'

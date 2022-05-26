@@ -1,0 +1,57 @@
+# Enable control-s and control-q
+stty -ixon
+# Remaping caps to escape
+setxkbmap -option caps:escape
+
+# If you come from bash you might have to change your $PATH.
+# To allow for completion on base16_*
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+ZSH_THEME="agnoster"
+
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
+
+#complete setup zsh | source /dev/stdin
+
+prompt_end() {
+    if [[ -n $CURRENT_BG ]]; then
+        print -n "%{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
+    else
+        print -n "%{%k%}"
+    fi
+
+    print -n "%{%f%}"
+    CURRENT_BG='' 
+
+    #Adds the new line and ➜ as the start character.
+    printf "\n ➜";
+}
+
+
+plugins=(
+    git
+    colored-man-pages
+    fzf-tab
+    zsh-syntax-highlighting
+)
+
+ZSH=~/.oh-my-zsh
+
+source $ZSH/oh-my-zsh.sh
+source ~/dotfiles/zsh/aliases
+source ~/dotfiles/fzf/fzf.zsh
+
+# Alt-S inserts 'sudo' at beginning of line
+insert_sudo () { zle beginning-of-line; zle -U "sudo " }
+zle -N insert-sudo insert_sudo
+bindkey "^[s" insert-sudo
+
+export FZF_DEFAULT_COMMAND="fdfind --type f --color=never"
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
