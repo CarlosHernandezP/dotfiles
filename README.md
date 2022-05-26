@@ -2,9 +2,6 @@
 Configuration files for
 + tmux
 + inputrc
-+ vim
++ nvim
 + zsh
-
-#### Useful info:
-
-Set global `.gitignore`: `git config --global core.excludesfile 'path/to/gitignore'`
++ and others
